@@ -2,14 +2,9 @@ import { NextFunction, Request, Response } from 'express'
 import jwt from 'jsonwebtoken'
 import { createCustomError } from '../utils/customError'
 
-
-interface IVerifiedUser {
-  id: string
-  isAdmin: boolean
-}
-
 export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.access_token
+  console.log({token})
   if (!token) {
     return next(createCustomError(401, 'You are not authenticated!'))
   }
@@ -22,6 +17,8 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
 }
 
 export const verifyUser = (req: Request, res: Response, next: NextFunction) => {
+  // verifyToken(req, res, next)
+
   if (req.user.id === req.params.id || req.user.isAdmin) {
     next()
   } else {
@@ -30,6 +27,8 @@ export const verifyUser = (req: Request, res: Response, next: NextFunction) => {
 }
 
 export const verifyAdmin = (req: Request, res: Response, next: NextFunction) => {
+  // verifyToken(req, res, next)
+
   if (req.user.isAdmin) {
     next()
   } else {

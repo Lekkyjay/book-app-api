@@ -9,21 +9,18 @@ import {
   getHotels,
   updateHotel,
 } from '../controllers/hotel'
-import { verifyAdmin } from '../middlewares/verifyJWT'
+import { verifyAdmin, verifyToken } from '../middlewares/verifyJWT'
 
 const router = express.Router()
 
 //CREATE
-// router.post('/', verifyAdmin, createHotel)
-router.post('/', createHotel)
+router.post('/', verifyToken, verifyAdmin, createHotel)
 
 //UPDATE
-// router.put('/:id', verifyAdmin, updateHotel)
-router.put('/:id', updateHotel)
+router.put('/:id', verifyToken, verifyAdmin, updateHotel)
 
 //DELETE
-// router.delete('/:id', verifyAdmin, deleteHotel)
-router.delete('/:id', deleteHotel)
+router.delete('/:id', verifyToken, verifyAdmin, deleteHotel)
 
 //GET
 router.get('/find/:id', getHotel)
