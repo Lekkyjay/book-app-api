@@ -7,6 +7,7 @@ import { dbConn } from './config/dbConn'
 import { corsOptions } from './config/corsOptions'
 import authRoutes from './routes/auth'
 import hotelRoutes from './routes/hotel'
+import { errorHanlder } from './middlewares/errorhandler'
 
 const app = express()
 dbConn()
@@ -20,6 +21,9 @@ app.use(cookieParser())
 // routes
 app.use('/api/auth', authRoutes)
 app.use("/api/hotels", hotelRoutes)
+
+//errorhandler
+app.use(errorHanlder)
 
 const PORT = process.env.PORT || 5000
 

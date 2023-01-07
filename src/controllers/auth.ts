@@ -38,11 +38,9 @@ const loginUser = async (req: Request, res: Response, next: NextFunction) => {
       process.env.JWT as string
     )
 
-    const { password, isAdmin, ...otherDetails } = user
+    const { password, isAdmin, ...otherDetails } = user._doc
     res
-      .cookie("access_token", token, {
-        httpOnly: true,
-      })
+      .cookie("access_token", token, { httpOnly: true })
       .status(200)
       .json({ details: { ...otherDetails }, isAdmin })
   } catch (err) {
