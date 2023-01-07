@@ -7,6 +7,7 @@ import { dbConn } from './config/dbConn'
 import { corsOptions } from './config/corsOptions'
 import authRoutes from './routes/auth'
 import hotelRoutes from './routes/hotel'
+import roomRoutes from './routes/room'
 import { errorHanlder } from './middlewares/errorhandler'
 
 const app = express()
@@ -21,6 +22,7 @@ app.use(cookieParser())
 // routes
 app.use('/api/auth', authRoutes)
 app.use("/api/hotels", hotelRoutes)
+app.use("/api/rooms", roomRoutes)
 
 //errorhandler
 app.use(errorHanlder)

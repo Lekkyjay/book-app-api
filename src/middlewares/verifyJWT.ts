@@ -4,7 +4,6 @@ import { createCustomError } from '../utils/customError'
 
 export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
   const token = req.cookies.access_token
-  console.log({token})
   if (!token) {
     return next(createCustomError(401, 'You are not authenticated!'))
   }
