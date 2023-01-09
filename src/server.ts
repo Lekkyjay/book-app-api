@@ -8,6 +8,7 @@ import { corsOptions } from './config/corsOptions'
 import authRoutes from './routes/auth'
 import hotelRoutes from './routes/hotel'
 import roomRoutes from './routes/room'
+import userRoutes from './routes/user'
 import { errorHanlder } from './middlewares/errorhandler'
 
 const app = express()
@@ -23,6 +24,7 @@ app.use(cookieParser())
 app.use('/api/auth', authRoutes)
 app.use("/api/hotels", hotelRoutes)
 app.use("/api/rooms", roomRoutes)
+app.use("/api/users", userRoutes)
 
 //errorhandler
 app.use(errorHanlder)
