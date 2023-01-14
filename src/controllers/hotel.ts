@@ -58,6 +58,15 @@ export const getHotels = async (req: Request, res: Response, next: NextFunction)
   }
 }
 
+export const getByType = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const hotels = await Hotel.find({ type: req.query.type })
+    res.status(200).json(hotels)
+  } catch (err) {
+    next(err)
+  }
+}
+
 export const countByCity = async (req: Request, res: Response, next: NextFunction) => {
   const cities = (req.query.cities as string).split(',')
   try {
@@ -82,10 +91,10 @@ export const countByType = async (req: Request, res: Response, next: NextFunctio
 
     res.status(200).json([
       { type: 'hotel', count: hotelCount },
-      { type: 'apartments', count: apartmentCount },
-      { type: 'resorts', count: resortCount },
-      { type: 'villas', count: villaCount },
-      { type: 'cabins', count: cabinCount },
+      { type: 'apartment', count: apartmentCount },
+      { type: 'resort', count: resortCount },
+      { type: 'villa', count: villaCount },
+      { type: 'cabin', count: cabinCount },
     ])
   } catch (err) {
     next(err)

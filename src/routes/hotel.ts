@@ -4,6 +4,7 @@ import {
   countByType,
   createHotel,
   deleteHotel,
+  getByType,
   getHotel,
   getHotelRooms,
   getHotels,
@@ -27,6 +28,8 @@ router.get('/find/:id', getHotel)
 
 //GET ALL
 router.get('/', getHotels)
+
+router.get('/getByType', getByType)
 
 router.get('/countByCity', countByCity)
 router.get('/countByType', countByType)
